@@ -1,5 +1,4 @@
-import { TransactionHistory } from 'components/TransactionHistory/TransactionHistory'
-import transactions from 'components/incomingData/transactions.json'
+import Feedback from 'components/Feedback/Feedback'
 
 export const App = () => {
   return (
@@ -13,7 +12,7 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      <TransactionHistory transactions={transactions} />
+      <Feedback />
     </div>
   );
 };
