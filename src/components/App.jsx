@@ -1,3 +1,6 @@
+import { TransactionHistory } from 'components/TransactionHistory/TransactionHistory'
+import transactions from 'components/incomingData/transactions.json'
+
 export const App = () => {
   return (
     <div
@@ -10,7 +13,7 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      React homework template
+      <TransactionHistory transactions={transactions} />
     </div>
   );
 };
