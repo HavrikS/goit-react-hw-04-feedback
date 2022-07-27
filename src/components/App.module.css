@@ -1,0 +1,10 @@
+
+.container {
+
+    margin: 0 auto;
+    width: 368px;
+    display: flex;
+    flex-direction: column;        
+    font-size: 24px;
+    color: #010101;
+}

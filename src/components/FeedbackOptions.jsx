@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 
 const FeedbackOptions = ({onHandleButtonGood, onHandleButtonNeutral, onHandleButtonBad}) => (
@@ -10,3 +11,10 @@ const FeedbackOptions = ({onHandleButtonGood, onHandleButtonNeutral, onHandleBut
 )
 
 export default FeedbackOptions;
+
+
+FeedbackOptions.propTypes = {
+    onHandleButtonGood: PropTypes.func.isRequired,
+    onHandleButtonNeutral: PropTypes.func.isRequired,
+    onHandleButtonBad: PropTypes.func.isRequired,
+};
