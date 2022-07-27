@@ -1,11 +1,12 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import FeedbackOptions from 'components/Feedback/FeedbackOptions'
+import Statistics from 'components/Feedback/Statistics'
+import Notification from 'components/Feedback/Notification'
+
 
 export class Feedback extends Component {
   //static propTypes = {}
-
-
 
   state = {
     good: 0,
@@ -44,20 +45,17 @@ export class Feedback extends Component {
 
   render() {
     const { good, neutral, bad } = this.state
-    const totalFeedback = this.countTotalFeedback()
-    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage()
+    const total = this.countTotalFeedback()
+    const positivePercentage = this.countPositiveFeedbackPercentage()
     return (      
       <div>
         <h2>Please leave feedback</h2>
         <FeedbackOptions onHandleButtonGood={this.handleButtonGood}
         onHandleButtonNeutral={this.handleButtonNeutral}
-        onHandleButtonBad={this.handleButtonBad}/>
+          onHandleButtonBad={this.handleButtonBad} />
         <h2>Statistics</h2>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Neutral: {bad}</p>        
-        <p>Total: {totalFeedback}</p>
-        <p>Positive feedback: {(good > 0 ? positiveFeedbackPercentage : 0)}%</p>
+        {total === 0 && (<Notification message="There is no feedback"></Notification>)}
+        {total > 0 && (<Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}/>)}
       </div>
     );
   }

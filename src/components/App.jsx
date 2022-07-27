@@ -1,14 +1,16 @@
 import Feedback from 'components/Feedback/Feedback'
 
 export const App = () => {
+  
+
   return (
     <div
-      style={{
-        height: '100vh',
+      style={{        
+        marginTop: 50,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 40,
+        fontSize: 24,
         color: '#010101'
       }}
     >
