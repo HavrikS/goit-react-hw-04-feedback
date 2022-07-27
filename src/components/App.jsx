@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 import FeedbackOptions from 'components/FeedbackOptions'
 import Statistics from 'components/Statistics'
 import Notification from 'components/Notification'
+import Section from 'components/Section'
 import css from 'components/App.module.css'
+
 
 
 export class App extends Component {
@@ -48,15 +50,17 @@ export class App extends Component {
     const { good, neutral, bad } = this.state
     const total = this.countTotalFeedback()
     const positivePercentage = this.countPositiveFeedbackPercentage()
-    return (      
+    return (
       <div className={css.container}>
-        <h2>Please leave feedback</h2>
-        <FeedbackOptions onHandleButtonGood={this.handleButtonGood}
-        onHandleButtonNeutral={this.handleButtonNeutral}
-          onHandleButtonBad={this.handleButtonBad} />
-        <h2>Statistics</h2>
-        {total === 0 && (<Notification message="There is no feedback"></Notification>)}
-        {total > 0 && (<Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}/>)}
+        <Section title="Please leave feedback"> 
+          <FeedbackOptions onHandleButtonGood={this.handleButtonGood}
+          onHandleButtonNeutral={this.handleButtonNeutral}
+            onHandleButtonBad={this.handleButtonBad} />
+        </Section>
+        <Section title="Statistics">        
+          {total === 0 && (<Notification message="There is no feedback"></Notification>)}
+          {total > 0 && (<Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}/>)}      
+        </Section>
       </div>
     );
   }
