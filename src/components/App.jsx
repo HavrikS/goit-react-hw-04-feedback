@@ -7,9 +7,7 @@ import Section from 'components/Section'
 import css from 'components/App.module.css'
 
 
-
 export class App extends Component {
-  //static propTypes = {}
 
   state = {
     good: 0,
@@ -17,21 +15,9 @@ export class App extends Component {
     bad: 0
   }
 
-  handleButtonGood = () => {
+handleButton = (option) => {    
     this.setState(prevState => ({
-      good: prevState.good + 1,
-    }))
-  };
-
-  handleButtonNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }))
-  };
-
-  handleButtonBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
+    [option]: prevState[option] + 1,
     }))
   };
 
@@ -50,12 +36,11 @@ export class App extends Component {
     const { good, neutral, bad } = this.state
     const total = this.countTotalFeedback()
     const positivePercentage = this.countPositiveFeedbackPercentage()
+    
     return (
       <div className={css.container}>
         <Section title="Please leave feedback"> 
-          <FeedbackOptions onHandleButtonGood={this.handleButtonGood}
-          onHandleButtonNeutral={this.handleButtonNeutral}
-            onHandleButtonBad={this.handleButtonBad} />
+          <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.handleButton} />
         </Section>
         <Section title="Statistics">        
           {total === 0 && (<Notification message="There is no feedback"></Notification>)}
