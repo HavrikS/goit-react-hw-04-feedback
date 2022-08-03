@@ -43,8 +43,8 @@ handleButton = (option) => {
           <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.handleButton} />
         </Section>
         <Section title="Statistics">        
-          {total === 0 && (<Notification message="There is no feedback"></Notification>)}
-          {total > 0 && (<Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}/>)}      
+          {total === 0 ? (<Notification message="There is no feedback"></Notification>) :
+          (<Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}/>)}      
         </Section>
       </div>
     );
