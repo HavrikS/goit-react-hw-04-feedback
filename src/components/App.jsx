@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import { useState } from 'react'
 import FeedbackOptions from 'components/FeedbackOptions'
 import Statistics from 'components/Statistics'
 import Notification from 'components/Notification'
@@ -7,40 +7,38 @@ import Section from 'components/Section'
 import css from 'components/App.module.css'
 
 
-export class App extends Component {
+export default function App () {
 
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0
-  }
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-handleButton = (option) => {    
-    this.setState(prevState => ({
-    [option]: prevState[option] + 1,
-    }))
+  const options = [
+    { name: "good", setter: setGood },
+    { name: "neutral", setter: setNeutral },
+    { name: "bad", setter: setBad }];
+  
+  const handleButton = (setter) => {    
+    setter(prevState => prevState + 1)
   };
 
-  countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state
+  const countTotalFeedback = () => {    
     return  good + neutral + bad
   }
 
-  countPositiveFeedbackPercentage = () => {
-    const { good, neutral, bad } = this.state
+  const countPositiveFeedbackPercentage = () => {    
     return Math.ceil((good/(good + neutral + bad)*100))
   }
 
 
-  render() {
-    const { good, neutral, bad } = this.state
-    const total = this.countTotalFeedback()
-    const positivePercentage = this.countPositiveFeedbackPercentage()
+    
+    const total = countTotalFeedback()
+    const positivePercentage = countPositiveFeedbackPercentage()
     
     return (
       <div className={css.container}>
         <Section title="Please leave feedback"> 
-          <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.handleButton} />
+          <FeedbackOptions options={options} onLeaveFeedback={handleButton} />
         </Section>
         <Section title="Statistics">        
           {total === 0 ? (<Notification message="There is no feedback"></Notification>) :
@@ -49,6 +47,4 @@ handleButton = (option) => {
       </div>
     );
   }
-}
 
-export default App;
